@@ -206,6 +206,10 @@ public class World {
 		for (WorldObject it : inSpot) {
 			// TODO(FishGrid): Don't let us move over rocks as a Fish.
 			
+//			if (Rock instanceof player) {
+	//			return false;
+		//	}
+			
 			// The other fish shouldn't step "on" the player, the player should step on the other fish.
 			if (it instanceof Snail) {
 				// This if-statement doesn't let anyone step on the Snail.

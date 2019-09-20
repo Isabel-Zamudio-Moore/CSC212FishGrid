@@ -69,9 +69,9 @@ public class FishGame {
 			world.insertRockRandomly();
 		}
 		
-		// TODO(lab) Make the snail!
+		// (lab) Make the snail!
 		Snail Al= new Snail(world);
-		Al.
+			world.insertSnailRandomly();
 		
 		// Make the player out of the 0th fish color.
 		player = new Fish(0, world);
@@ -102,7 +102,7 @@ public class FishGame {
 	 */
 	public boolean gameOver() {
 		// TODO(FishGrid) We want to bring the fish home before we win!
-		return missing.isEmpty();
+				return missing.isEmpty();
 	}
 
 	/**
