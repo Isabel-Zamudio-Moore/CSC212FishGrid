@@ -183,6 +183,12 @@ public class World {
 		insertRandomly(snail);
 		return snail;
 	}
+	public FallingRocks insertFallingRocks() {
+		FallingRocks fr= new FallingRocks(this);
+		insertRandomly(fr);
+		return fr;
+		
+	}
 	
 	/**
 	 * Determine if a WorldObject can swim to a particular point.
@@ -204,11 +210,12 @@ public class World {
 		List<WorldObject> inSpot = this.find(x, y);
 		
 		for (WorldObject it : inSpot) {
-			// TODO(FishGrid): Don't let us move over rocks as a Fish.
+			// Don't let us move over rocks as a Fish.
+			if (it instanceof Rock) {
+			return false;
+			}
 			
-//			if (Rock instanceof player) {
-	//			return false;
-		//	}
+		
 			
 			// The other fish shouldn't step "on" the player, the player should step on the other fish.
 			if (it instanceof Snail) {
@@ -238,14 +245,26 @@ public class World {
 	 * @param followers a set of objects to follow the leader.
 	 */
 	public static void objectsFollow(WorldObject target, List<? extends WorldObject> followers) {
-		// TODO(FishGrid) Comment this method!
+		//(FishGrid) Comment this method!
 		// What is recentPositions?
+					// the recent position is the list of positions that the target fish has just visited
+					//including the target fish's most recent position
 		// What is followers?
+					//the Followers are the the found fish
 		// What is target?
+					//the target is the player
 		// Why is past = putWhere[i+1]? Why not putWhere[i]?
+				// We must use i+1 in odder to have the following fish move (at closest) to a position
+				// that is one step behind the target fish's current position
+		//i+1 allows us to assign the following fishes new positions based on
+				// a list of the target fishes previous positions.
 		List<IntPoint> putWhere = new ArrayList<>(target.recentPositions);
 		for (int i=0; i < followers.size() && i+1 < putWhere.size(); i++) {
 			// What is the deal with the two conditions in this for-loop?
+					// the first condition means we iterate for the length of the list of following fish.
+					// the second condition suggests that the list of positions will have 1 more position
+					// in the list than the number of following fish in order to allow us to
+					// store the target fish's current position
 			IntPoint past = putWhere.get(i+1);
 			followers.get(i).setPosition(past.x, past.y);
 		}

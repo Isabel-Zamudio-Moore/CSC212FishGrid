@@ -19,11 +19,15 @@ public class Fish extends WorldObject {
 			Color.red,
 			Color.green,
 			Color.yellow,
+			Color.orange,
+			Color.cyan,
 			Color.blue,
-			Color.darkGray,
-			Color.orange
 			// (lab) Add more colors.
-			// TODO: (FishGrid) Maybe make a special fish that is more points?
+			// (FishGrid) Maybe make a special fish that is more points?
+			Color.gray,
+			Color.darkGray,
+			Color.black,
+			Color.white
 			
 	};
 	/**
@@ -107,6 +111,20 @@ public class Fish extends WorldObject {
 		flipped.fill(tail);
 		
 		flipped.dispose();
+			
+	}
+	
+	// Boolean if fish is scared
+	public boolean IsScared(Fish n) {
+		if ((n.getColor()==Color.darkGray)
+				| (n.getColor()==Color.gray)
+				|(n.getColor()==Color.white)
+				| (n.getColor()==Color.black)) {
+			return true;
+		} else {
+			return false;
+		}
+		
 	}
 	
 	@Override

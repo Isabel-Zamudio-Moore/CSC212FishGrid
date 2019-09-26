@@ -161,7 +161,7 @@ public class Main extends GFX {
 	@Override
 	public void update(double secondsSinceLastUpdate) {
 		// Handle game-over and restart.
-		if (game.gameOver()) {
+		if (game.gameOver()==true) {
 			this.gameState.setString("You win! Click anywhere start again!");
 			if (this.processClick() != null) {
 				this.game = new FishGame(LOGICAL_GRID_SIZE, LOGICAL_GRID_SIZE);
