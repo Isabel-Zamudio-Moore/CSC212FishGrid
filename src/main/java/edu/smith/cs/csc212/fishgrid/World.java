@@ -1,3 +1,4 @@
+// Changes made with guidance from TAs
 package edu.smith.cs.csc212.fishgrid;
 
 import java.util.*;
@@ -184,11 +185,23 @@ public class World {
 		return snail;
 	}
 	public FallingRocks insertFallingRocks() {
+		//Create and insert the rock randomly
+
 		FallingRocks fr= new FallingRocks(this);
 		insertRandomly(fr);
 		return fr;
-		
-	}
+		}
+
+	// TODO 
+	  
+	  public FishFood insertFishFood() { 
+		  //Create and insert the rock randomly
+	 FishFood Ff= new FishFood(this);
+	 insertRandomly(Ff);
+	 return Ff;
+	  
+	 }
+	
 	
 	/**
 	 * Determine if a WorldObject can swim to a particular point.
@@ -206,24 +219,48 @@ public class World {
 		// This will be important.
 		boolean isPlayer = whoIsAsking.isPlayer();
 		
-		// We will need to look at who all is in the spot to determine if we can move there.
+			// We will need to look at who all is in the spot to determine if we can move there.
+	
 		List<WorldObject> inSpot = this.find(x, y);
-		
 		for (WorldObject it : inSpot) {
 			// Don't let us move over rocks as a Fish.
 			if (it instanceof Rock) {
 			return false;
 			}
-			
 		
-			
 			// The other fish shouldn't step "on" the player, the player should step on the other fish.
 			if (it instanceof Snail) {
 				// This if-statement doesn't let anyone step on the Snail.
 				// The Snail(s) are not gonna take it.
 				return false;
+				}
+			if (it instanceof FallingRocks) {
+				return false;
+				}
+			// Create an if statement that says 
+			//that objects that aren't the player
+			// cannot be drawn over each other
+			if (whoIsAsking.isPlayer()==false) {
+				if (it instanceof Fish) {
+					return false;
+				}
+				
 			}
+			/*
+			 * }} else { boolean isGameFish=whoIsAsking.isGameFish(); for (WorldObject fw:
+			 * inSpot){ if (fw instanceof Rock) { return false; } if (fw instanceof Snail) {
+			 * return false; } }
+			 */
+					 /* } boolean isGameFish =whoIsAsking.isGameFish(); List<WorldObject> inGivenSpot
+					 * = isGameFIsh.find(x, y);
+					 * 
+					 * for (WorldObject gfish: inGivenSpot) { if (gfish instanceof Fish) { return
+					 * false; }
+					 */
 		}
+		
+		
+		//}
 		
 		// If we didn't see an obstacle, we can move there!
 		return true;

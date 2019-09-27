@@ -132,6 +132,14 @@ public abstract class WorldObject {
 	public boolean isPlayer() {
 		return isFish() && ((Fish) this).player;
 	}
+	
+	public boolean isGameFish() {
+		if (((Fish) this).player==false) {
+			return isFish();
+		} else {
+			return false;
+		}
+	}
 
 	/**
 	 * Move this object down if possible.

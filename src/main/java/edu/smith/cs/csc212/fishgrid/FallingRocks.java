@@ -7,24 +7,14 @@ package edu.smith.cs.csc212.fishgrid;
  */
 
 public class FallingRocks extends Rock {
-
-	public final int NumFr= 3;
-	
 	public FallingRocks(World world) {
-		super(world);
-
-		this.world= world;
-		// Create a for loop that creates multiple Rocks
-		for (int i=0; i<NumFr; i++) {
-			step();	
-			world.insertRockRandomly();
-			}
-		//Move the falling rocks down
-		//step();
+		super(world);				  
+		this.world= world;			
 	}
 	
 	@Override
 	public void step(){
+		//move the falling rock down
 		moveDown();
 	}
 
